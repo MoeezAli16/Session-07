@@ -4,12 +4,19 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Button } from "@/components/ui/button"; 
 
-const FormSection = lazy(() => import("./components/FormSection"));
+//For Checking LazyLoading
+const FormSection = lazy(() => {
+  console.log("Lazy loading FormSection...");
+  return import("./components/FormSection");
+});
+const AboutUs = lazy(() => {
+  console.log("Lazy loading AboutUs...");
+  return import("./components/About");
+});
 const ProjectDetails = lazy(() => import("./components/ProjectDetails"));
 const ServiceSection = lazy(() => import("./components/ServiceSection"));
 const TestimonialSection = lazy(() => import("./components/TestimonialSection"));
 const PartnerSection = lazy(() => import("./components/PartnerSection"));
-const AboutUs = lazy(() => import("./components/About"));
 const ContactUs = lazy(() => import("./components/ContactUs"));
 const Career = lazy(() => import("./components/Career"));
 const Portfolio = lazy(() => import("./components/Portfolio"));
