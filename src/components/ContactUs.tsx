@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button"; // Replace with actual Button component
-import { Input } from "@/components/ui/input"; // Replace with actual Input component
-import { Label } from "@/components/ui/label"; // Replace with actual Label component
-import facebook from "../assets/facebook.png";
-import linkedin from "../assets/linkedin.png";
-import instagram from "../assets/insta.png";
-import twiter from "../assets/twitter.png";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useNavigate } from "react-router-dom"; 
 
 interface ContactUsProps {
   isDarkMode: boolean;
@@ -17,6 +14,8 @@ const ContactUs: React.FC<ContactUsProps> = ({ isDarkMode }) => {
     email: "",
     message: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,7 +29,8 @@ const ContactUs: React.FC<ContactUsProps> = ({ isDarkMode }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted", formData);
+
+    navigate(`/success?name=${formData.name}&email=${formData.email}`);
   };
 
   return (
@@ -46,15 +46,6 @@ const ContactUs: React.FC<ContactUsProps> = ({ isDarkMode }) => {
       >
         Contact Us
       </h1>
-      <p
-        className={`text-lg ${
-          isDarkMode ? "text-gray-300" : "text-gray-500"
-        }`}
-      >
-        We'd love to hear from you. Please fill out the form below, and we will
-        get back to you soon!
-      </p>
-
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
         <div className="flex flex-col">
           <Label htmlFor="name">Name</Label>
@@ -96,41 +87,15 @@ const ContactUs: React.FC<ContactUsProps> = ({ isDarkMode }) => {
           />
         </div>
 
-        <div className="flex justify-center">
-          <Button
-            type="submit"
-            className={` text-white px-6 py-2 rounded-md ${
-              isDarkMode ? "text-black bg-white" : "text-white bg-black"
-            }`}
-          >
-            Send Message
-          </Button>
-        </div>
+        <Button
+          type="submit"
+          className={`text-white px-6 py-2 rounded-md ${
+            isDarkMode ? "text-black bg-white" : "text-white bg-black"
+          }`}
+        >
+          Send Message
+        </Button>
       </form>
-
-      {/* Social Media Icons */}
-      <div className="flex space-x-4 mt-4">
-        <img
-          src={linkedin}
-          alt="Linkedin"
-          className="rounded-full w-10 h-10 cursor-pointer"
-        />
-        <img
-          src={facebook}
-          alt="Facebook"
-          className="rounded-full w-10 h-10 cursor-pointer"
-        />
-        <img
-          src={twiter}
-          alt="Twitter"
-          className="rounded-full w-10 h-10 cursor-pointer"
-        />
-        <img
-          src={instagram}
-          alt="Instagram"
-          className="rounded-full w-10 h-10 cursor-pointer"
-        />
-      </div>
     </div>
   );
 };

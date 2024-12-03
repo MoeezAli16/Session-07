@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Button } from "@/components/ui/button"; 
+import SuccessPage from "./components/SuccessPage";
+import Spinner from "./components/Spinner";
 
 //For Checking LazyLoading
 const FormSection = lazy(() => {
@@ -51,9 +53,9 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className={isDarkMode ? "dark" : ""}>
+      <div className={isDarkMode ? "dark" : "light"}>
         <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Spinner/>}>
           <Routes>
             <Route
               path="/"
@@ -77,6 +79,7 @@ const App: React.FC = () => {
             <Route path="/portfolio" element={<Portfolio isDarkMode={isDarkMode} />} />
             <Route path="/career" element={<Career isDarkMode={isDarkMode} />} />
             <Route path="/contact" element={<ContactUs isDarkMode={isDarkMode} />} />
+            <Route path="/success" element={<SuccessPage />} />
           </Routes>
         </Suspense>
 

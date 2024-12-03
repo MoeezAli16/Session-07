@@ -20,7 +20,6 @@ const FormSection: React.FC<FormSectionProps> = ({ handleSubmit }) => {
 
   return (
     <div className="flex justify-center items-center mt-4 space-x-8 ml-72">
-      {/* Card Section */}
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Assign Projects</CardTitle>
