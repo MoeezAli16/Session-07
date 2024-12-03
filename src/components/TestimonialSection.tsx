@@ -1,8 +1,18 @@
-import React from 'react';
+import React from "react";
 
-const TestimonialSection: React.FC = () => (
+interface TestimonialSectionProps {
+  isDarkMode: boolean;
+}
+
+const TestimonialSection: React.FC<TestimonialSectionProps> = ({ isDarkMode }) => (
   <div className="flex flex-col justify-center items-center mt-8 mb-8">
-    <h2 className="text-3xl font-semibold mb-12 mt-12">Our Testimonials</h2>
+    <h2
+      className={`text-3xl font-semibold mb-12 mt-12 ${
+        isDarkMode ? "text-yellow-500" : "text-black"
+      }`}
+    >
+      Our Testimonials
+    </h2>
     <div className="flex justify-center gap-8">
       <a href="https://www.example1.com" target="_blank" rel="noopener noreferrer">
         <img

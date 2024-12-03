@@ -1,50 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import FormSection from "./components/FormSection";
-import ProjectDetails from "./components/ProjectDetails";
-import ServiceSection from "./components/ServiceSection";
-import TestimonialSection from "./components/TestimonialSection";
-import PartnerSection from "./components/PartnerSection";
 import Footer from "./components/Footer";
+import { Button } from "@/components/ui/button"; 
+
+const FormSection = lazy(() => import("./components/FormSection"));
+const ProjectDetails = lazy(() => import("./components/ProjectDetails"));
+const ServiceSection = lazy(() => import("./components/ServiceSection"));
+const TestimonialSection = lazy(() => import("./components/TestimonialSection"));
+const PartnerSection = lazy(() => import("./components/PartnerSection"));
+const AboutUs = lazy(() => import("./components/About"));
+const ContactUs = lazy(() => import("./components/ContactUs"));
+const Career = lazy(() => import("./components/Career"));
+const Portfolio = lazy(() => import("./components/Portfolio"));
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [framework, setFramework] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("isDarkMode");
+    if (savedTheme) {
+      setIsDarkMode(JSON.parse(savedTheme));
+    }
+  }, []);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark", !isDarkMode); 
+    setIsDarkMode((prev) => {
+      const newTheme = !prev;
+      localStorage.setItem("isDarkMode", JSON.stringify(newTheme));
+      document.documentElement.classList.toggle("dark", newTheme);
+      return newTheme;
+    });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = (projectName: string, framework: string) => {
+    setProjectName(projectName);
+    setFramework(framework);
     setFormSubmitted(true);
   };
 
   return (
-    <div className={isDarkMode ? "dark" : ""}>
-      <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      <FormSection
-        projectName={projectName}
-        setProjectName={setProjectName}
-        framework={framework}
-        setFramework={setFramework}
-        handleSubmit={handleSubmit}
-      />
-      {formSubmitted && (
-        <ProjectDetails
-          projectName={projectName}
-          framework={framework}
-          isDarkMode={isDarkMode} // Pass isDarkMode here
-        />
-      )}
-      <ServiceSection />
-      <TestimonialSection />
-      <PartnerSection />
-      <Footer isDarkMode={isDarkMode} />
-    </div>
+    <Router>
+      <div className={isDarkMode ? "dark" : ""}>
+        <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <FormSection handleSubmit={handleFormSubmit} />
+                  {formSubmitted && (
+                    <ProjectDetails
+                      projectName={projectName}
+                      framework={framework}
+                      isDarkMode={isDarkMode}
+                    />
+                  )}
+                  <ServiceSection isDarkMode={isDarkMode} />
+                  <TestimonialSection isDarkMode={isDarkMode} />
+                  <PartnerSection isDarkMode={isDarkMode} />
+                </>
+              }
+            />
+            <Route path="/about" element={<AboutUs isDarkMode={isDarkMode} />} />
+            <Route path="/portfolio" element={<Portfolio isDarkMode={isDarkMode} />} />
+            <Route path="/career" element={<Career isDarkMode={isDarkMode} />} />
+            <Route path="/contact" element={<ContactUs isDarkMode={isDarkMode} />} />
+          </Routes>
+        </Suspense>
+
+        <Footer isDarkMode={isDarkMode} />
+      </div>
+    </Router>
   );
 };
 

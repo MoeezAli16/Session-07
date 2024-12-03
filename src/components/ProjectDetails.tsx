@@ -1,7 +1,7 @@
 interface ProjectDetailsProps {
     projectName: string;
     framework: string;
-    isDarkMode: boolean;  // Ensure isDarkMode is included here
+    isDarkMode: boolean; 
   }
   
   const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName, framework, isDarkMode }) => (

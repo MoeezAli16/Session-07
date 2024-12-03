@@ -11,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => (
     <hr className={`border-t-2 ${isDarkMode ? "border-white" : "border-black"}`} />
   <div className={`flex flex-col justify-center pt-8 ${isDarkMode ? "bg-black text-white" : "bg-gray-200 text-black"}`}>
     {/* Input form for email and message */}
-    <div className="flex justify-center gap-96 mb-4 items-center">
+    {/* <div className="flex justify-center gap-96 mb-4 items-center">
       <input
         type="email"
         placeholder="Enter your email"
@@ -24,12 +24,12 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode }) => (
         placeholder="Enter your message"
         className="w-[300px] p-2 rounded-md"
       />
-    </div>
-    <div className="flex justify-center gap-96 mb-4 items-center">
+    </div> */}
+    {/* <div className="flex justify-center gap-96 mb-4 items-center">
       <button className={`cursor-pointer hover:text-yellow-500 mb-4 p-2 rounded-md  ${isDarkMode ? "bg-black text-white" : "bg-grey text-black"}`}>
         Submit
       </button>
-    </div>
+    </div> */}
     <div className="flex justify-center gap-96 mb-2 items-center">
       <img src={isDarkMode ? logoDark : logoLight} alt="Logo" className="mb-2 w-40 h-30 rounded-2xl" />
       <p className="cursor-pointer hover:text-yellow-500">Copyright (c) 2024 Txend</p>
