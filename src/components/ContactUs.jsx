@@ -4,11 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom"; 
 
-interface ContactUsProps {
-  isDarkMode: boolean;
-}
-
-const ContactUs: React.FC<ContactUsProps> = ({ isDarkMode }) => {
+const ContactUs = ({ isDarkMode }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,17 +13,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ isDarkMode }) => {
 
   const navigate = useNavigate();
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({...formData,[name]: value,});
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     navigate(`/success?name=${formData.name}&email=${formData.email}`);

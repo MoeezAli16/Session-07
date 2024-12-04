@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-const SuccessPage: React.FC = () => {
+const SuccessPage = () => {
   const location = useLocation();
   
   const queryParams = new URLSearchParams(location.search);

@@ -5,21 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-interface FormSectionProps {
-  handleSubmit: (projectName: string, framework: string) => void;
-}
-
-const FormSection: React.FC<FormSectionProps> = ({ handleSubmit }) => {
+const FormSection = ({ handleSubmit }) => {
   const [projectName, setProjectName] = useState("");
   const [framework, setFramework] = useState("");
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit(projectName, framework);
   };
 
   return (
-    <div className="flex justify-center items-center mt-4 space-x-8 ml-72">
+    // space-x-8 ml-72
+    <div className="flex justify-center items-center mt-4 "> 
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Assign Projects</CardTitle>
@@ -61,14 +58,14 @@ const FormSection: React.FC<FormSectionProps> = ({ handleSubmit }) => {
           </form>
         </CardContent>
       </Card>
-      <div className="flex">
-      <iframe 
-      src="https://www.youtube.com/embed/ACftuTCsDZM" 
-      title="YouTube video" 
-      className="w-350 h-550 border-none" 
-       allowFullScreen>
-       </iframe>
-      </div>
+      {/* <div className="flex">
+        <iframe 
+          src="https://www.youtube.com/embed/ACftuTCsDZM" 
+          title="YouTube video" 
+          className="w-350 h-550 border-none" 
+          allowFullScreen
+        />
+      </div> */}
     </div>
   );
 };

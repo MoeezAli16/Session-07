@@ -1,10 +1,6 @@
 import React from "react";
 
-interface ServiceSectionProps {
-  isDarkMode: boolean;
-}
-
-const ServiceSection: React.FC<ServiceSectionProps> = ({ isDarkMode }) => (
+const ServiceSection = ({ isDarkMode }) => (
   <div className="flex flex-col justify-center items-center mt-8 mb-8">
     <h2
       className={`text-3xl font-semibold mb-12 mt-12 ${

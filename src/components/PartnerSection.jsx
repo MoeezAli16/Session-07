@@ -4,11 +4,7 @@ import levis from "../assets/levis.png";
 import pointduty from "../assets/pointduty.png";
 import denso from "../assets/denso.png";
 
-interface PartnerSectionProps {
-  isDarkMode: boolean;
-}
-
-const PartnerSection: React.FC<PartnerSectionProps> = ({ isDarkMode }) => (
+const PartnerSection = ({ isDarkMode }) => (
   <div className="flex flex-col justify-center items-center mt-8 mb-8">
     <h2
       className={`text-3xl font-semibold mb-12 mt-12 ${
@@ -17,7 +13,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ isDarkMode }) => (
     >
       Our Partners
     </h2>
-    <div className="flex justify-center gap-8">
+    <div className="flex flex-wrap justify-center gap-8">
       <a
         href="https://www.example1.com"
         target="_blank"
@@ -26,7 +22,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ isDarkMode }) => (
         <img
           src={krillpay}
           alt="Krillpay"
-          className="w-48 h-50 object-cover rounded-lg shadow-lg"
+          className="w-48 h-48 object-cover rounded-lg shadow-lg transition-transform hover:scale-105"
         />
       </a>
       <a
@@ -37,7 +33,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ isDarkMode }) => (
         <img
           src={levis}
           alt="Levis"
-          className="w-48 h-50 object-cover rounded-lg shadow-lg"
+          className="w-48 h-48 object-cover rounded-lg shadow-lg transition-transform hover:scale-105"
         />
       </a>
       <a
@@ -48,7 +44,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ isDarkMode }) => (
         <img
           src={pointduty}
           alt="Point Duty"
-          className="w-48 h-45 object-cover rounded-lg shadow-lg"
+          className="w-48 h-48 object-cover rounded-lg shadow-lg transition-transform hover:scale-105"
         />
       </a>
       <a
@@ -59,7 +55,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ isDarkMode }) => (
         <img
           src={denso}
           alt="Denso"
-          className="w-48 h-50 object-cover rounded-lg shadow-lg"
+          className="w-48 h-48 object-cover rounded-lg shadow-lg transition-transform hover:scale-105"
         />
       </a>
     </div>

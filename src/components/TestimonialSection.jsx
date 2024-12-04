@@ -1,10 +1,8 @@
 import React from "react";
 
-interface TestimonialSectionProps {
-  isDarkMode: boolean;
-}
 
-const TestimonialSection: React.FC<TestimonialSectionProps> = ({ isDarkMode }) => (
+
+const TestimonialSection = ({ isDarkMode }) => (
   <div className="flex flex-col justify-center items-center mt-8 mb-8">
     <h2
       className={`text-3xl font-semibold mb-12 mt-12 ${

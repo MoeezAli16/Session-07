@@ -23,7 +23,7 @@ const ContactUs = lazy(() => import("./components/ContactUs"));
 const Career = lazy(() => import("./components/Career"));
 const Portfolio = lazy(() => import("./components/Portfolio"));
 
-const App: React.FC = () => {
+const App= () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [projectName, setProjectName] = useState("");
@@ -45,7 +45,7 @@ const App: React.FC = () => {
     });
   };
 
-  const handleFormSubmit = (projectName: string, framework: string) => {
+  const handleFormSubmit = (projectName, framework) => {
     setProjectName(projectName);
     setFramework(framework);
     setFormSubmitted(true);
